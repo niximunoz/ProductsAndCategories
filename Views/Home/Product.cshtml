@@ -1,0 +1,34 @@
+
+@model Association
+
+<div class="container">
+    <h1>@ViewBag.Product.Name</h1>
+    <div class="row">
+        <div class="col">
+            <h2>Categories</h2>
+            <ul class="list-group">
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <li class="list-group-item">@category.Name</li>
+                }
+            </ul>
+
+        </div>
+        <div class="col">
+            <form asp-action="AddCategory" method="POST">
+                <h2>Add a Category</h2>
+                <div>
+                    <select class="form-select" asp-for="CategoryId">
+                        @foreach (var category in ViewBag.AllCategories)
+                        {
+                            <option value="@category.CategoryId">@category.Name</option>
+                        }
+                    </select>
+                </div>
+                <input type="hidden" asp-for="ProductId" value="@ViewBag.Product.ProductId">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+
+        </div>
+    </div>
+</div>
